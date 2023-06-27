@@ -15,8 +15,10 @@ app.use(globalRegisterApp)
 httpRequestMethod.request({
   url: "/goods",
   method: "post",
+  headers: {},
   interceptors: {
     requestInterceptor: (config) => {
+      console.log("单个拦截器")
       return config
     }
   }

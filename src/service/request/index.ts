@@ -31,9 +31,14 @@ class Request {
 
     this.instance.interceptors.response.use(
       (res) => {
-        return res
+        console.log("所以请求响应成功的拦截器")
+        return res.data
       },
       (error) => {
+        console.log("所以请求响应失败的拦截器")
+        if (error.response.status === 404) {
+          console.log("404错误")
+        }
         return error
       }
     )
@@ -43,7 +48,6 @@ class Request {
     // 针对单个接口发送前的拦截器处理
     if (config.interceptors?.requestInterceptor) {
       config = config.interceptors.requestInterceptor(config)
-      console.log(config, "单个接口的拦截1")
     }
     this.instance.request(config).then((res) => {
       // 单个接口响应成功后的拦截器处理

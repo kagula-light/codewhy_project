@@ -7,6 +7,14 @@ const httpRequestMethod = new Request({
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor: (config) => {
+      // 携带token
+      const token = ""
+      if (token) {
+        config.headers = {
+          ...config.headers,
+          Authorization: `Bearer ${token}`
+        }
+      }
       console.log("发送成功")
       return config
     },
