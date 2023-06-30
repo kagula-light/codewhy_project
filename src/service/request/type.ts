@@ -11,4 +11,5 @@ export interface httpRequestInterceptors {
 export interface httpRequestConfig extends AxiosRequestConfig {
   interceptors?: httpRequestInterceptors
   headers?: any
+  showLoading?: boolean
 }

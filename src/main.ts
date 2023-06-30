@@ -15,6 +15,7 @@ app.use(globalRegisterApp)
 httpRequestMethod.request({
   url: "/goods",
   method: "post",
+  showLoading: true,
   headers: {},
   interceptors: {
     requestInterceptor: (config) => {
