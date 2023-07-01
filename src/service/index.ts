@@ -3,8 +3,8 @@ import Request from "./request"
 import { BASE_URL, TIME_OUT } from "./request/config"
 
 const httpRequestMethod = new Request({
-  baseURL: BASE_URL,
-  timeout: TIME_OUT,
+  baseURL: BASE_URL, // 该实例默认的参数
+  timeout: TIME_OUT, // 该实例默认的参数
   interceptors: {
     requestInterceptor: (config) => {
       // 携带token
@@ -15,7 +15,7 @@ const httpRequestMethod = new Request({
           Authorization: `Bearer ${token}`
         }
       }
-      console.log("发送成功")
+      console.log("实例发送成功")
       return config
     },
     requestInterceptorCatch: (error) => {
@@ -24,7 +24,7 @@ const httpRequestMethod = new Request({
       return error
     },
     responseInterceptor: (res) => {
-      console.log("响应成功")
+      console.log("实例响应成功")
 
       return res
     },
@@ -34,4 +34,5 @@ const httpRequestMethod = new Request({
     }
   }
 })
+console.log(httpRequestMethod, "看看实例")
 export default httpRequestMethod

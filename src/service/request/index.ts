@@ -5,7 +5,7 @@ import { ElLoading } from "element-plus/lib/index"
 const DEFAULT_LOADING = false
 
 class Request {
-  instance: AxiosInstance // axios的配置
+  instance: AxiosInstance // axios的实例
   interceptors?: httpRequestInterceptors // 拦截器
   loading?: any // 加载动画
   showLoading: boolean
@@ -25,9 +25,10 @@ class Request {
       this.interceptors?.responseInterceptorCatch
     )
 
-    // 添加所有的实例都有的拦截器
+    // 添加所有的实例都有的拦截器 如果没有自定义全局拦截器的方法，则实例中的拦截器会接收axios默认返回的值
     this.instance.interceptors.request.use(
       (config) => {
+        console.log("全局请求成功")
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -44,6 +45,7 @@ class Request {
 
     this.instance.interceptors.response.use(
       (res) => {
+        console.log("全局响应成功")
         this.loading?.close()
         return res.data
       },
@@ -56,11 +58,11 @@ class Request {
     )
   }
 
-  request<T>(config: httpRequestConfig): Promise<T> {
+  request<T>(config: httpRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 针对单个接口发送前的拦截器处理
       if (config.interceptors?.requestInterceptor) {
-        config = config.interceptors.requestInterceptor(config)
+        config = config.interceptors.requestInterceptor(config) // 看不懂，但是打印出来看了一下，相当于是这个返回了一个新的config，然后改变了原有的requestInterceptor的方法
       }
       // 添加loading状态
       if (config.showLoading) {
@@ -73,7 +75,6 @@ class Request {
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res)
           }
-          console.log(res, "请求成功了？？")
           // 请求结束，将showLoading的状态初始化
           this.showLoading = DEFAULT_LOADING
           resolve(res)
@@ -87,19 +88,19 @@ class Request {
     })
   }
 
-  get<T>(config: httpRequestConfig): Promise<T> {
+  get<T>(config: httpRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "GET" })
   }
 
-  post<T>(config: httpRequestConfig): Promise<T> {
+  post<T>(config: httpRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "POST" })
   }
 
-  delete<T>(config: httpRequestConfig): Promise<T> {
+  delete<T>(config: httpRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "DELETE" })
   }
 
-  patch<T>(config: httpRequestConfig): Promise<T> {
+  patch<T>(config: httpRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "PATCH" })
   }
 }
