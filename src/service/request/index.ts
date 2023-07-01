@@ -45,45 +45,62 @@ class Request {
     this.instance.interceptors.response.use(
       (res) => {
         this.loading?.close()
-        console.log("所以请求响应成功的拦截器")
         return res.data
       },
       (error) => {
-        console.log("所以请求响应失败的拦截器")
         if (error.response.status === 404) {
           this.loading?.close()
-          console.log("404错误")
         }
         return error
       }
     )
   }
 
-  request(config: httpRequestConfig): void {
-    // 针对单个接口发送前的拦截器处理
-    if (config.interceptors?.requestInterceptor) {
-      config = config.interceptors.requestInterceptor(config)
-    }
-    // 添加loading状态
-    if (config.showLoading) {
-      this.showLoading = config.showLoading
-    }
-    this.instance
-      .request(config)
-      .then((res) => {
-        // 单个接口响应成功后的拦截器处理
-        if (config.interceptors?.responseInterceptor) {
-          res = config.interceptors.responseInterceptor(res)
-        }
-        console.log(res)
-        // 请求结束，将showLoading的状态初始化
-        this.showLoading = DEFAULT_LOADING
-      })
-      .then((err) => {
-        // 请求结束，将showLoading的状态初始化
-        this.showLoading = DEFAULT_LOADING
-        return err
-      })
+  request<T>(config: httpRequestConfig): Promise<T> {
+    return new Promise((resolve, reject) => {
+      // 针对单个接口发送前的拦截器处理
+      if (config.interceptors?.requestInterceptor) {
+        config = config.interceptors.requestInterceptor(config)
+      }
+      // 添加loading状态
+      if (config.showLoading) {
+        this.showLoading = config.showLoading
+      }
+      this.instance
+        .request<any, T>(config)
+        .then((res) => {
+          // 单个接口响应成功后的拦截器处理
+          if (config.interceptors?.responseInterceptor) {
+            res = config.interceptors.responseInterceptor(res)
+          }
+          console.log(res, "请求成功了？？")
+          // 请求结束，将showLoading的状态初始化
+          this.showLoading = DEFAULT_LOADING
+          resolve(res)
+        })
+        .catch((err) => {
+          // 请求结束，将showLoading的状态初始化
+          this.showLoading = DEFAULT_LOADING
+          reject(err)
+          return err
+        })
+    })
+  }
+
+  get<T>(config: httpRequestConfig): Promise<T> {
+    return this.request<T>({ ...config, method: "GET" })
+  }
+
+  post<T>(config: httpRequestConfig): Promise<T> {
+    return this.request<T>({ ...config, method: "POST" })
+  }
+
+  delete<T>(config: httpRequestConfig): Promise<T> {
+    return this.request<T>({ ...config, method: "DELETE" })
+  }
+
+  patch<T>(config: httpRequestConfig): Promise<T> {
+    return this.request<T>({ ...config, method: "PATCH" })
   }
 }
 

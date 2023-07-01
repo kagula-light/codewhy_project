@@ -11,17 +11,20 @@ const app = createApp(App)
 app.use(router)
 app.use(store)
 app.use(globalRegisterApp)
+
 // registerApp(app)
-httpRequestMethod.request({
-  url: "/goods",
-  method: "post",
-  showLoading: true,
-  headers: {},
-  interceptors: {
-    requestInterceptor: (config) => {
-      console.log("单个拦截器")
-      return config
-    }
-  }
-})
+interface DataType {
+  data: any
+  returnCode?: string
+  success: boolean
+}
+
+httpRequestMethod
+  .get<DataType>({
+    url: "/home/multidata",
+    showLoading: true
+  })
+  .then((res) => {
+    console.log(res)
+  })
 app.mount("#app")
