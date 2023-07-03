@@ -5,7 +5,7 @@
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
       <a href="https://cli.vuejs.org" rel="noopener" target="_blank"
-      >vue-cli documentation</a
+        >vue-cli documentation</a
       >.
     </p>
     <h3>Installed CLI Plugins</h3>
@@ -15,7 +15,7 @@
           href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
           rel="noopener"
           target="_blank"
-        >babel</a
+          >babel</a
         >
       </li>
       <li>
@@ -23,7 +23,7 @@
           href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
           rel="noopener"
           target="_blank"
-        >router</a
+          >router</a
         >
       </li>
       <li>
@@ -31,7 +31,7 @@
           href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex"
           rel="noopener"
           target="_blank"
-        >vuex</a
+          >vuex</a
         >
       </li>
       <li>
@@ -39,7 +39,7 @@
           href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
           rel="noopener"
           target="_blank"
-        >eslint</a
+          >eslint</a
         >
       </li>
       <li>
@@ -47,7 +47,7 @@
           href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript"
           rel="noopener"
           target="_blank"
-        >typescript</a
+          >typescript</a
         >
       </li>
     </ul>
@@ -58,17 +58,17 @@
       </li>
       <li>
         <a href="https://forum.vuejs.org" rel="noopener" target="_blank"
-        >Forum</a
+          >Forum</a
         >
       </li>
       <li>
         <a href="https://chat.vuejs.org" rel="noopener" target="_blank"
-        >Community Chat</a
+          >Community Chat</a
         >
       </li>
       <li>
         <a href="https://twitter.com/vuejs" rel="noopener" target="_blank"
-        >Twitter</a
+          >Twitter</a
         >
       </li>
       <li>
@@ -79,7 +79,7 @@
     <ul>
       <li>
         <a href="https://router.vuejs.org" rel="noopener" target="_blank"
-        >vue-router</a
+          >vue-router</a
         >
       </li>
       <li>
@@ -90,12 +90,12 @@
           href="https://github.com/vuejs/vue-devtools#vue-devtools"
           rel="noopener"
           target="_blank"
-        >vue-devtools</a
+          >vue-devtools</a
         >
       </li>
       <li>
         <a href="https://vue-loader.vuejs.org" rel="noopener" target="_blank"
-        >vue-loader</a
+          >vue-loader</a
         >
       </li>
       <li>
@@ -103,7 +103,7 @@
           href="https://github.com/vuejs/awesome-vue"
           rel="noopener"
           target="_blank"
-        >awesome-vue</a
+          >awesome-vue</a
         >
       </li>
     </ul>
@@ -111,10 +111,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
     msg: String
   }

@@ -1,5 +1,8 @@
-import axios, { AxiosInstance } from "axios"
-import type { httpRequestConfig, httpRequestInterceptors } from "@/service/request/type"
+import axios, { AxiosInstance } from 'axios'
+import type {
+  httpRequestConfig,
+  httpRequestInterceptors
+} from '@/service/request/type'
 
 class Request {
   instance: AxiosInstance // axios的配置
@@ -31,13 +34,13 @@ class Request {
 
     this.instance.interceptors.response.use(
       (res) => {
-        console.log("所以请求响应成功的拦截器")
+        console.log('所以请求响应成功的拦截器')
         return res.data
       },
       (error) => {
-        console.log("所以请求响应失败的拦截器")
+        console.log('所以请求响应失败的拦截器')
         if (error.response.status === 404) {
-          console.log("404错误")
+          console.log('404错误')
         }
         return error
       }

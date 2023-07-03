@@ -1,14 +1,14 @@
 module.exports = {
   plugins: [
     [
-      "import",
+      'import',
       {
-        libraryName: "element-plus",
+        libraryName: 'element-plus',
         customStyleName: (name) => {
           return `element-plus/dist/${name}.css`
         }
       }
     ]
   ],
-  presets: ["@vue/cli-plugin-babel/preset"]
+  presets: ['@vue/cli-plugin-babel/preset']
 }

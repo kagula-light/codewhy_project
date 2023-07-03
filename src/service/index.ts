@@ -1,6 +1,6 @@
 // service统一出口
-import Request from "./request"
-import { BASE_URL, TIME_OUT } from "./request/config"
+import Request from './request'
+import { BASE_URL, TIME_OUT } from './request/config'
 
 const httpRequestMethod = new Request({
   baseURL: BASE_URL,
@@ -8,28 +8,28 @@ const httpRequestMethod = new Request({
   interceptors: {
     requestInterceptor: (config) => {
       // 携带token
-      const token = ""
+      const token = ''
       if (token) {
         config.headers = {
           ...config.headers,
           Authorization: `Bearer ${token}`
         }
       }
-      console.log("发送成功")
+      console.log('发送成功')
       return config
     },
     requestInterceptorCatch: (error) => {
-      console.log("发送失败")
+      console.log('发送失败')
 
       return error
     },
     responseInterceptor: (res) => {
-      console.log("响应成功")
+      console.log('响应成功')
 
       return res
     },
     responseInterceptorCatch: (error) => {
-      console.log("响应失败")
+      console.log('响应失败')
       return error
     }
   }
