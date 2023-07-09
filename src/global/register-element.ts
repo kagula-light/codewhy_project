@@ -8,18 +8,34 @@ import {
   ElBacktop,
   ElBadge,
   ElButton,
-  ElTable
+  ElCheckbox,
+  ElForm,
+  ElFormItem,
+  ElIcon,
+  ElInput,
+  ElLink,
+  ElTable,
+  ElTabPane,
+  ElTabs
 } from "element-plus/lib/index"
 
 const components = [
   ElButton,
   ElTable,
+  ElIcon,
+  ElInput,
+  ElCheckbox,
+  ElLink,
   ElAlert,
   ElAside,
   ElAutocomplete,
   ElAvatar,
   ElBacktop,
-  ElBadge
+  ElBadge,
+  ElForm,
+  ElFormItem,
+  ElTabs,
+  ElTabPane
 ]
 export default function(app: App): void {
   for (const cpn of components) {

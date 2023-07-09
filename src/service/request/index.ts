@@ -28,7 +28,6 @@ class Request {
     // 添加所有的实例都有的拦截器 如果没有自定义全局拦截器的方法，则实例中的拦截器会接收axios默认返回的值
     this.instance.interceptors.request.use(
       (config) => {
-        console.log("全局请求成功")
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -45,7 +44,6 @@ class Request {
 
     this.instance.interceptors.response.use(
       (res) => {
-        console.log("全局响应成功")
         this.loading?.close()
         return res.data
       },
@@ -58,7 +56,7 @@ class Request {
     )
   }
 
-  request<T>(config: httpRequestConfig<T>): Promise<T> {
+  request<T = any>(config: httpRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 针对单个接口发送前的拦截器处理
       if (config.interceptors?.requestInterceptor) {
