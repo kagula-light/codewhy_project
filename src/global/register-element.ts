@@ -1,5 +1,5 @@
-import { App } from 'vue'
-import 'element-plus/dist/index.css'
+import { App } from "vue"
+import "element-plus/dist/index.css"
 import {
   ElAlert,
   ElAside,
@@ -8,20 +8,50 @@ import {
   ElBacktop,
   ElBadge,
   ElButton,
-  ElTable
-} from 'element-plus/lib/index'
+  ElCheckbox,
+  ElContainer,
+  ElForm,
+  ElFormItem,
+  ElHeader,
+  ElIcon,
+  ElInput,
+  ElLink,
+  ElMain,
+  ElMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElSubMenu,
+  ElTable,
+  ElTabPane,
+  ElTabs
+} from "element-plus/lib/index"
 
 const components = [
+  ElMenu,
+  ElSubMenu,
+  ElMenuItemGroup,
+  ElMenuItem,
   ElButton,
   ElTable,
+  ElIcon,
+  ElInput,
+  ElCheckbox,
+  ElLink,
   ElAlert,
   ElAside,
+  ElContainer,
+  ElHeader,
+  ElMain,
   ElAutocomplete,
   ElAvatar,
   ElBacktop,
-  ElBadge
+  ElBadge,
+  ElForm,
+  ElFormItem,
+  ElTabs,
+  ElTabPane
 ]
-export default function (app: App): void {
+export default function(app: App): void {
   for (const cpn of components) {
     app.component(cpn.name, cpn)
   }
