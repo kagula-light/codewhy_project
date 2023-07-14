@@ -27,25 +27,24 @@
       <el-link type="primary">忘记密码</el-link>
     </div>
     <el-button class="login-button" type="primary" @click="handleLoginClick"
-    >立即登录
-    </el-button
-    >
+      >立即登录
+    </el-button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Iphone, UserFilled } from "@element-plus/icons-vue"
-import LoginAccount from "@/views/login/components/login-account.vue"
-import LoginPhone from "@/views/login/components/login-phone.vue"
-import { ref } from "vue"
+import { Iphone, UserFilled } from '@element-plus/icons-vue'
+import LoginAccount from '@/views/login/components/login-account.vue'
+import LoginPhone from '@/views/login/components/login-phone.vue'
+import { ref } from 'vue'
 
-const currentTab = ref<string>("account")
+const currentTab = ref<string>('account')
 const isKeepPassword = ref(true)
 const phoneRef = ref<InstanceType<typeof LoginAccount>>()
 const accountRef = ref<InstanceType<typeof LoginPhone>>()
 
 const handleLoginClick = () => {
-  if (currentTab.value === "account") {
+  if (currentTab.value === 'account') {
     accountRef.value?.loginAction(isKeepPassword.value)
   }
 }

@@ -1,6 +1,10 @@
-import axios, { AxiosInstance } from "axios"
-import type { httpRequestConfig, httpRequestInterceptors } from "@/service/request/type"
-import { ElLoading } from "element-plus/lib/index"
+import axios, { AxiosInstance } from 'axios'
+import type {
+  httpRequestConfig,
+  httpRequestInterceptors
+} from '@/service/request/type'
+import { ElLoading } from 'element-plus/lib/index'
+import { HttpResponse } from '@/service/request/type'
 
 const DEFAULT_LOADING = false
 
@@ -31,26 +35,34 @@ class Request {
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
-            text: "加载中...",
-            background: "rgba(0, 0, 0, .5)"
+            text: '加载中...',
+            background: 'rgba(0, 0, 0, .5)'
           })
         }
+        console.log('请求成功的', config)
         return config
       },
       (error) => {
+        console.log('请求错误的抛出', error)
         return error
       }
     )
 
     this.instance.interceptors.response.use(
-      (res) => {
+      (res: HttpResponse) => {
         this.loading?.close()
+        console.log('响应成功', res)
+        if (res.response && res.response.status === 400) {
+          alert(res.response.data)
+          return
+        }
         return res.data
       },
       (error) => {
         if (error.response.status === 404) {
           this.loading?.close()
         }
+        console.log('响应失败', error)
         return error
       }
     )
@@ -87,19 +99,19 @@ class Request {
   }
 
   get<T>(config: httpRequestConfig<T>): Promise<T> {
-    return this.request<T>({ ...config, method: "GET" })
+    return this.request<T>({ ...config, method: 'GET' })
   }
 
   post<T>(config: httpRequestConfig<T>): Promise<T> {
-    return this.request<T>({ ...config, method: "POST" })
+    return this.request<T>({ ...config, method: 'POST' })
   }
 
   delete<T>(config: httpRequestConfig<T>): Promise<T> {
-    return this.request<T>({ ...config, method: "DELETE" })
+    return this.request<T>({ ...config, method: 'DELETE' })
   }
 
   patch<T>(config: httpRequestConfig<T>): Promise<T> {
-    return this.request<T>({ ...config, method: "PATCH" })
+    return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
 

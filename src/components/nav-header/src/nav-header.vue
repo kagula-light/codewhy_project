@@ -8,19 +8,19 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue"
+import { computed, ref } from 'vue'
 
-const emit = defineEmits(["foldChange"])
+const emit = defineEmits(['foldChange'])
 
 const isFold = ref(false)
 
 const menuIcon = computed(() => {
-  return isFold.value ? "Expand" : "Fold"
+  return isFold.value ? 'Expand' : 'Fold'
 })
 
 const handleFoldClick = () => {
   isFold.value = !isFold.value
-  emit("foldChange", isFold.value)
+  emit('foldChange', isFold.value)
 }
 </script>
 

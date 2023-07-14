@@ -1,10 +1,10 @@
-import { createStore, Store, useStore as useVuexStore } from "vuex"
-import login from "@/store/login/login"
-import { IRootState, IStoreType } from "@/store/types"
+import { createStore, Store, useStore as useVuexStore } from 'vuex'
+import login from '@/store/login/login'
+import { IRootState, IStoreType } from '@/store/types'
 
 const store = createStore<IRootState>({
   state: {
-    name: "",
+    name: '',
     age: 0
   },
   getters: {},
@@ -17,7 +17,7 @@ const store = createStore<IRootState>({
 
 // vuex初始化
 export function setupStore() {
-  store.dispatch("login/loadLocalLogin")
+  store.dispatch('login/loadLocalLogin')
 }
 
 export function useStore(): Store<IStoreType> {

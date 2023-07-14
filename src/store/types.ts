@@ -1,4 +1,4 @@
-import { ILoginState } from "@/store/login/types"
+import { ILoginState } from '@/store/login/types'
 
 export interface IRootState {
   name: string

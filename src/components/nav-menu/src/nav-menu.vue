@@ -25,9 +25,7 @@
             </template>
             <!-- 遍历里面的item -->
             <template v-for="subItem in item.children" :key="subItem.id">
-              <el-menu-item
-                :index="subItem.id + ''"
-              >
+              <el-menu-item :index="subItem.id + ''">
                 <el-icon v-if="subItem.icon">
                   <component :is="subItem.icon"></component>
                 </el-icon>
@@ -51,9 +49,8 @@
 </template>
 
 <script lang="ts" setup>
-
-import { computed } from "vue"
-import { useStore } from "@/store"
+import { computed } from 'vue'
+import { useStore } from '@/store'
 
 const props = defineProps({
   collapse: {
@@ -124,4 +121,3 @@ const userMenus = computed(() => store.state.login.userMenus)
   height: calc(100% - 48px);
 }
 </style>
-

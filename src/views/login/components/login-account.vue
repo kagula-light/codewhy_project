@@ -12,16 +12,16 @@
 </template>
 
 <script lang="ts" setup>
-import { rules } from "@/views/login/config/account"
-import { ElForm } from "element-plus/lib/index"
-import { reactive, ref } from "vue"
-import { useStore } from "vuex"
-import localCache from "@/utils/cache"
+import { rules } from '@/views/login/config/account'
+import { ElForm } from 'element-plus/lib/index'
+import { reactive, ref } from 'vue'
+import { useStore } from 'vuex'
+import localCache from '@/utils/cache'
 
 const store = useStore()
 const account = reactive({
-  name: localCache.getCache("name") ?? "",
-  password: localCache.getCache("password") ?? ""
+  name: localCache.getCache('name') ?? '',
+  password: localCache.getCache('password') ?? ''
 })
 const formRef = ref<InstanceType<typeof ElForm>>()
 
@@ -31,18 +31,18 @@ const loginAction = (isKeepPassword: boolean) => {
       // 是否需要记住密码
       if (isKeepPassword) {
         // 本地缓存
-        localCache.setCache("name", account.name)
-        localCache.setCache("password", account.password)
+        localCache.setCache('name', account.name)
+        localCache.setCache('password', account.password)
       } else {
-        localCache.deleteCache("name")
-        localCache.deleteCache("password")
+        localCache.deleteCache('name')
+        localCache.deleteCache('password')
       }
 
       // 开始登录
-      store.dispatch("login/accountLoginAction", { ...account })
+      store.dispatch('login/accountLoginAction', { ...account })
     }
   })
-  console.log(formRef, "子组件登录")
+  console.log(formRef, '子组件登录')
 }
 defineExpose({
   account,

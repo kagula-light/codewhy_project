@@ -1,12 +1,12 @@
-import router from "@/router"
-import localCache from "@/utils/cache"
+import router from '@/router'
+import localCache from '@/utils/cache'
 
 router.beforeEach((to) => {
-  if (to.path !== "/login") {
-    const token = localCache.getCache("token")
+  if (to.path !== '/login') {
+    const token = localCache.getCache('token')
     if (!token) {
       localCache.clearCache()
-      return "/login"
+      return '/login'
     }
   }
 })

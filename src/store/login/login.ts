@@ -1,15 +1,19 @@
-import { Module } from "vuex"
-import { accountLoginRequest, requestUserInfoById, requestUserMenusByRoleId } from "@/service/login/login"
-import { ILoginState } from "./types"
-import localCache from "@/utils/cache"
-import { IRootState } from "../types"
-import router from "@/router"
+import { Module } from 'vuex'
+import {
+  accountLoginRequest,
+  requestUserInfoById,
+  requestUserMenusByRoleId
+} from '@/service/login/login'
+import { ILoginState } from './types'
+import localCache from '@/utils/cache'
+import { IRootState } from '../types'
+import router from '@/router'
 
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
   state() {
     return {
-      token: "",
+      token: '',
       userInfo: {},
       userMenus: []
     }
@@ -30,35 +34,37 @@ const loginModule: Module<ILoginState, IRootState> = {
     async accountLoginAction({ commit }, payload: any) {
       // 登录
       const loginResult = await accountLoginRequest(payload)
-      const { id, token } = loginResult.data
-      commit("changeToken", token)
-      localCache.setCache("token", token)
+      if (loginResult) {
+        const { id, token } = loginResult.data
+        commit('changeToken', token)
+        localCache.setCache('token', token)
 
-      // 获取用户信息
-      const userInfoResult = await requestUserInfoById(id)
-      const userInfo = userInfoResult.data
-      commit("changeUserInfo", userInfo)
-      localCache.setCache("userInfo", userInfo)
+        // 获取用户信息
+        const userInfoResult = await requestUserInfoById(id)
+        const userInfo = userInfoResult.data
+        commit('changeUserInfo', userInfo)
+        localCache.setCache('userInfo', userInfo)
 
-      // 获取用户菜单
-      const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id)
-      const userMenus = userMenusResult.data
-      commit("changeUserMenus", userMenus)
-      localCache.setCache("userMenus", userMenus)
-      await router.push("/main")
+        // 获取用户菜单
+        const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id)
+        const userMenus = userMenusResult.data
+        commit('changeUserMenus', userMenus)
+        localCache.setCache('userMenus', userMenus)
+        await router.push('/main')
+      }
     },
     loadLocalLogin({ commit }) {
-      const token = localCache.getCache("token")
+      const token = localCache.getCache('token')
       if (token) {
-        commit("changeToken", token)
+        commit('changeToken', token)
       }
-      const userInfo = localCache.getCache("userInfo")
+      const userInfo = localCache.getCache('userInfo')
       if (userInfo) {
-        commit("changeUserInfo", userInfo)
+        commit('changeUserInfo', userInfo)
       }
-      const userMenus = localCache.getCache("userMenus")
+      const userMenus = localCache.getCache('userMenus')
       if (userMenus) {
-        commit("changeUserMenus", userMenus)
+        commit('changeUserMenus', userMenus)
       }
     }
   }

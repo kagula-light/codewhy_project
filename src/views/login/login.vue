@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
-import loginPanel from "@/views/login/components/login-panel.vue"
+import { defineComponent } from 'vue'
+import loginPanel from '@/views/login/components/login-panel.vue'
 
 export default defineComponent({
   components: {

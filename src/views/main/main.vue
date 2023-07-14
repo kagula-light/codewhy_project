@@ -15,9 +15,9 @@
 </template>
 
 <script lang="ts" setup>
-import NavHeader from "components/nav-header"
-import NavMenu from "components/nav-menu"
-import { ref } from "vue"
+import NavHeader from 'components/nav-header'
+import NavMenu from 'components/nav-menu'
+import { ref } from 'vue'
 
 const isCollapse = ref(false)
 
@@ -25,7 +25,6 @@ const foldChange = (isFold: boolean) => {
   isCollapse.value = isFold
   console.log(isFold)
 }
-
 </script>
 
 <style lang="less" scoped>
@@ -65,7 +64,7 @@ const foldChange = (isFold: boolean) => {
   text-align: left;
   cursor: pointer;
   background-color: #001529;
-  transition: width .3s linear;
+  transition: width 0.3s linear;
 }
 
 .el-main {

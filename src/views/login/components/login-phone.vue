@@ -15,12 +15,12 @@
 </template>
 
 <script lang="ts" setup>
-import { rules } from "@/views/login/config/account"
-import { reactive } from "vue"
+import { rules } from '@/views/login/config/account'
+import { reactive } from 'vue'
 
 const phone = reactive({
-  number: "",
-  verifyCode: ""
+  number: '',
+  verifyCode: ''
 })
 </script>
 

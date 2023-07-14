@@ -24,26 +24,14 @@
     // 文件路径在解析时的路径，基本为url
     "baseUrl": ".",
     // 指定具体要解析使用的类型
-    "types": [
-      "webpack-env",
-      "element-plus/global"
-    ],
+    "types": ["webpack-env", "element-plus/global"],
     // 路径解析
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "components/*": [
-        "src/components/*"
-      ]
+      "@/*": ["src/*"],
+      "components/*": ["src/components/*"]
     },
     // 可以指定在项目中可以使用哪些库的类型(Proxy/window/document)
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   // 指定那些文件下的代码需要用ts解析
   "include": [
@@ -54,7 +42,5 @@
     "tests/**/*.tsx"
   ],
   // 排除哪些文件需要被排除ts解析
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
