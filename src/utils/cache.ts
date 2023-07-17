@@ -9,9 +9,12 @@ class localCache {
   // 获取对应缓存数据
   getCache(key: string) {
     const value = window.localStorage.getItem(key)
-    console.log(value, '看看')
     if (value) {
-      return JSON.parse(value)
+      if (this.isJSON(value)) {
+        return JSON.parse(value)
+      } else {
+        return value
+      }
     }
   }
 
